@@ -13,7 +13,7 @@ const checkWeekEnd = (benefits, visitDate, selectedMenu) => {
 
     benefits.set(
       BENEFIT_CONSTANT.benefitNames.weekEnd,
-      discountNumber * BENEFIT_CONSTANT.discountAmount,
+      discountNumber * BENEFIT_CONSTANT.discount.general,
     );
   }
 };
@@ -28,7 +28,7 @@ const checkWeekDay = (benefits, visitDate, selectedMenu) => {
 
     benefits.set(
       BENEFIT_CONSTANT.benefitNames.weekDay,
-      discountNumber * BENEFIT_CONSTANT.discountAmount,
+      discountNumber * BENEFIT_CONSTANT.discount.general,
     );
   }
 };
@@ -37,25 +37,25 @@ const checkSpecial = (benefits, visitDate) => {
   if (SPECIAL_DATE.includes(visitDate)) {
     benefits.set(
       BENEFIT_CONSTANT.benefitNames.specialDiscount,
-      BENEFIT_CONSTANT.specialDiscountAmount,
+      BENEFIT_CONSTANT.discount.special,
     );
   }
 };
 
 const checkDday = (benefits, visitDate) => {
-  if (visitDate <= BENEFIT_CONSTANT.dDayDiscountLimit) {
+  if (visitDate <= BENEFIT_CONSTANT.dDay.discountLimit) {
     benefits.set(
       BENEFIT_CONSTANT.benefitNames.dDayDiscount,
-      BENEFIT_CONSTANT.dDayDiscountAmount(visitDate),
+      BENEFIT_CONSTANT.dDay.discountAmount(visitDate),
     );
   }
 };
 
 const storeGiftBenefit = (benefits, giftResult) => {
-  if (giftResult === BENEFIT_CONSTANT.gift) {
+  if (giftResult === BENEFIT_CONSTANT.gift.item) {
     benefits.set(
       BENEFIT_CONSTANT.benefitNames.giftEvent,
-      BENEFIT_CONSTANT.giftAmount,
+      BENEFIT_CONSTANT.gift.amount,
     );
   }
 };

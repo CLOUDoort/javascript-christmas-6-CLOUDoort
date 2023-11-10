@@ -1,4 +1,4 @@
-const MENU = Object.freeze({
+const MENU_PRICE = Object.freeze({
   양송이수프: 6_000,
   타파스: 5_500,
   시저샐러드: 8_000,
@@ -13,4 +13,11 @@ const MENU = Object.freeze({
   샴페인: 25_000,
 });
 
-export default MENU;
+const MENU_CATEGORY = Object.freeze({
+  appetizer: ['양송이수프', '타파스', '시저샐러드'],
+  main: ['티본스테이크', '비비큐립', '해산물파스타', '크리스마스파스타'],
+  dessert: ['초코케이크', '아이스크림'],
+  beverage: ['제로콜라', '레드와인', '샴페인'],
+});
+
+export { MENU_PRICE, MENU_CATEGORY };

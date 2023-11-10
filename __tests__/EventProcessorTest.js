@@ -1,17 +1,32 @@
 import BENEFIT_CONSTANT from '../src/constants/benefit';
 import EventProcessor from '../src/domains/EventProcessor';
 
+const testSelectedMenu1 = new Map([
+  ['티본스테이크', 1],
+  ['비비큐립', 1],
+  ['초코케이크', 2],
+  ['제로콜라', 1],
+]);
+const testSelectedMenu2 = new Map([
+  ['타파스', 1],
+  ['제로콜라', 1],
+]);
+
 describe('EventProcessor 클래스 테스트', () => {
-  test('할인 전 총주문 금액 계산', () => {
+  test.each([
+    {
+      visitDate: 5,
+      selectedMenu: testSelectedMenu1,
+      expectedTotalAmountBeforeDiscount: 142_000,
+    },
+    {
+      visitDate: 26,
+      selectedMenu: testSelectedMenu2,
+      expectedTotalAmountBeforeDiscount: 8_500,
+    },
+  ])('할인 전 총주문 금액 계산', (test) => {
     // Arrange
-    const visitDate = 5;
-    const selectedMenu = new Map([
-      ['티본스테이크', 1],
-      ['비비큐립', 1],
-      ['초코케이크', 2],
-      ['제로콜라', 1],
-    ]);
-    const expectedTotalAmountBeforeDiscount = 142_000;
+    const { visitDate, selectedMenu, expectedTotalAmountBeforeDiscount } = test;
 
     // Act
     const processor = new EventProcessor(visitDate, selectedMenu);
@@ -23,19 +38,11 @@ describe('EventProcessor 클래스 테스트', () => {
 
   test.each([
     {
-      selectedMenu: new Map([
-        ['티본스테이크', 1],
-        ['비비큐립', 1],
-        ['초코케이크', 2],
-        ['제로콜라', 1],
-      ]),
+      selectedMenu: testSelectedMenu1,
       expectedGift: BENEFIT_CONSTANT.gift,
     },
     {
-      selectedMenu: new Map([
-        ['타파스', 1],
-        ['제로콜라', 1],
-      ]),
+      selectedMenu: testSelectedMenu2,
       expectedGift: BENEFIT_CONSTANT.nothing,
     },
   ])('증정 메뉴 확인', (test) => {
@@ -53,25 +60,17 @@ describe('EventProcessor 클래스 테스트', () => {
 
   test.each([
     {
-      selectedMenu: new Map([
-        ['티본스테이크', 1],
-        ['비비큐립', 1],
-        ['초코케이크', 2],
-        ['제로콜라', 1],
-      ]),
+      selectedMenu: testSelectedMenu1,
       visitDate: 3,
       expectedBenefitsResult: new Map([
-        [BENEFIT_CONSTANT.benefitNames.dDayDiscount, 1200],
-        [BENEFIT_CONSTANT.benefitNames.weekDay, 4046],
-        [BENEFIT_CONSTANT.benefitNames.specialDiscount, 1000],
-        [BENEFIT_CONSTANT.benefitNames.giftEvent, 25000],
+        [BENEFIT_CONSTANT.benefitNames.dDayDiscount, 1_200],
+        [BENEFIT_CONSTANT.benefitNames.weekDay, 4_046],
+        [BENEFIT_CONSTANT.benefitNames.specialDiscount, 1_000],
+        [BENEFIT_CONSTANT.benefitNames.giftEvent, 2_5000],
       ]),
     },
     {
-      selectedMenu: new Map([
-        ['타파스', 1],
-        ['제로콜라', 1],
-      ]),
+      selectedMenu: testSelectedMenu2,
       visitDate: 26,
       expectedBenefitsResult: BENEFIT_CONSTANT.nothing,
     },
@@ -89,20 +88,12 @@ describe('EventProcessor 클래스 테스트', () => {
 
   test.each([
     {
-      selectedMenu: new Map([
-        ['티본스테이크', 1],
-        ['비비큐립', 1],
-        ['초코케이크', 2],
-        ['제로콜라', 1],
-      ]),
+      selectedMenu: testSelectedMenu1,
       visitDate: 3,
-      expectedTotalBenefitsAmount: 31246,
+      expectedTotalBenefitsAmount: 31_246,
     },
     {
-      selectedMenu: new Map([
-        ['타파스', 1],
-        ['제로콜라', 1],
-      ]),
+      selectedMenu: testSelectedMenu2,
       visitDate: 26,
       expectedTotalBenefitsAmount: BENEFIT_CONSTANT.nothingAmount,
     },
@@ -116,5 +107,28 @@ describe('EventProcessor 클래스 테스트', () => {
 
     // Assert
     expect(totalBenefitsAmount).toBe(expectedTotalBenefitsAmount);
+  });
+
+  test.each([
+    {
+      visitDate: 3,
+      selectedMenu: testSelectedMenu1,
+      expectedTotalAmountAfterDiscount: 135_754,
+    },
+    {
+      visitDate: 26,
+      selectedMenu: testSelectedMenu2,
+      expectedTotalAmountAfterDiscount: 8_500,
+    },
+  ])('할인 후 예상 결제 금액 계산', (test) => {
+    // Arrange
+    const { selectedMenu, visitDate, expectedTotalAmountAfterDiscount } = test;
+
+    // Act
+    const processor = new EventProcessor(visitDate, selectedMenu);
+    const totalAmountAfterDiscount = processor.getTotalAmountAfterDiscount();
+
+    // Assert
+    expect(totalAmountAfterDiscount).toBe(expectedTotalAmountAfterDiscount);
   });
 });

@@ -24,8 +24,8 @@ class EventProcessor {
 
   getCheckGiftResult() {
     const totalAmountBeforeDiscount = this.getTotalAmountBeforeDiscount();
-    if (totalAmountBeforeDiscount >= BENEFIT_CONSTANT.giftAmountLimit) {
-      return BENEFIT_CONSTANT.gift;
+    if (totalAmountBeforeDiscount >= BENEFIT_CONSTANT.gift.amountLimit) {
+      return BENEFIT_CONSTANT.gift.item;
     }
 
     return BENEFIT_CONSTANT.nothing;
@@ -67,11 +67,28 @@ class EventProcessor {
       return totalAmountBeforeDiscount;
     }
 
-    if (totalAmountBeforeDiscount >= BENEFIT_CONSTANT.giftAmountLimit) {
-      return totalAmountAfterDiscount + BENEFIT_CONSTANT.giftAmount;
+    if (totalAmountBeforeDiscount >= BENEFIT_CONSTANT.gift.amountLimit) {
+      return totalAmountAfterDiscount + BENEFIT_CONSTANT.gift.amount;
     }
 
     return totalAmountAfterDiscount;
+  }
+
+  getEventBadge() {
+    const totalBenefitsAmount = this.getTotalBenefitsAmount();
+    if (totalBenefitsAmount === BENEFIT_CONSTANT.nothingAmount) {
+      return BENEFIT_CONSTANT.nothing;
+    }
+
+    if (totalBenefitsAmount < BENEFIT_CONSTANT.eventBadge.tree.limit) {
+      return BENEFIT_CONSTANT.eventBadge.star.item;
+    }
+
+    if (totalBenefitsAmount < BENEFIT_CONSTANT.eventBadge.santa.limit) {
+      return BENEFIT_CONSTANT.eventBadge.tree.item;
+    }
+
+    return BENEFIT_CONSTANT.eventBadge.santa.item;
   }
 }
 

@@ -42,6 +42,20 @@ class EventProcessor {
 
     return benefits;
   }
+
+  getTotalBenefitsAmount() {
+    const totalBenefits = this.getBenefitsResult();
+    if (totalBenefits === BENEFIT_CONSTANT.nothing) {
+      return BENEFIT_CONSTANT.nothingAmount;
+    }
+
+    const totalBenefitsAmount = Array.from(totalBenefits).reduce(
+      (acc, [_, amount]) => acc + amount,
+      0,
+    );
+
+    return totalBenefitsAmount;
+  }
 }
 
 export default EventProcessor;

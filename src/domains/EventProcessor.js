@@ -56,6 +56,23 @@ class EventProcessor {
 
     return totalBenefitsAmount;
   }
+
+  getTotalAmountAfterDiscount() {
+    const totalAmountBeforeDiscount = this.getTotalAmountBeforeDiscount();
+    const totalBenefitsAmount = this.getTotalBenefitsAmount();
+    const totalAmountAfterDiscount =
+      totalAmountBeforeDiscount - totalBenefitsAmount;
+
+    if (totalBenefitsAmount === BENEFIT_CONSTANT.nothingAmount) {
+      return totalAmountBeforeDiscount;
+    }
+
+    if (totalAmountBeforeDiscount >= BENEFIT_CONSTANT.giftAmountLimit) {
+      return totalAmountAfterDiscount + BENEFIT_CONSTANT.giftAmount;
+    }
+
+    return totalAmountAfterDiscount;
+  }
 }
 
 export default EventProcessor;

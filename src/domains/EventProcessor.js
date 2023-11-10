@@ -1,11 +1,10 @@
 import MENU from '../constants/menu';
+import BENEFIT_CONSTANT from '../constants/benefit';
 
 class EventProcessor {
   #visitDate;
 
   #selectedMenus;
-
-  #benefits;
 
   constructor(visitDate, selectedMenus) {
     this.#visitDate = visitDate;
@@ -18,6 +17,15 @@ class EventProcessor {
       (total, [selectedMenu, count]) => total + MENU[selectedMenu] * count,
       0,
     );
+  }
+
+  getCheckGiftResult() {
+    const totalAmountBeforeDiscount = this.getTotalAmountBeforeDiscount();
+    if (totalAmountBeforeDiscount >= BENEFIT_CONSTANT.giftAmount) {
+      return BENEFIT_CONSTANT.gift;
+    }
+
+    return BENEFIT_CONSTANT.nothing;
   }
 }
 

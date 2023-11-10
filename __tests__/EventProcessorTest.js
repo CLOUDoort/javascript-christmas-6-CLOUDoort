@@ -12,7 +12,7 @@ const testSelectedMenu2 = new Map([
   ['제로콜라', 1],
 ]);
 
-describe('EventProcessor 클래스 테스트', () => {
+describe('EventProcessor 클래스 테스트.', () => {
   test.each([
     {
       visitDate: 5,
@@ -39,13 +39,13 @@ describe('EventProcessor 클래스 테스트', () => {
   test.each([
     {
       selectedMenu: testSelectedMenu1,
-      expectedGift: BENEFIT_CONSTANT.gift,
+      expectedGift: BENEFIT_CONSTANT.gift.item,
     },
     {
       selectedMenu: testSelectedMenu2,
       expectedGift: BENEFIT_CONSTANT.nothing,
     },
-  ])('증정 메뉴 확인', (test) => {
+  ])('증정 메뉴를 조건에 맞게 반환.', (test) => {
     // Arrange
     const visitDate = 5;
     const { selectedMenu, expectedGift } = test;
@@ -74,7 +74,7 @@ describe('EventProcessor 클래스 테스트', () => {
       visitDate: 26,
       expectedBenefitsResult: BENEFIT_CONSTANT.nothing,
     },
-  ])('혜택 내역 저장', (test) => {
+  ])('혜택 내역 저장.', (test) => {
     // Arrange
     const { selectedMenu, visitDate, expectedBenefitsResult } = test;
 
@@ -97,7 +97,7 @@ describe('EventProcessor 클래스 테스트', () => {
       visitDate: 26,
       expectedTotalBenefitsAmount: BENEFIT_CONSTANT.nothingAmount,
     },
-  ])('총혜택 금액 계산', (test) => {
+  ])('총혜택 금액 계산.', (test) => {
     // Arrange
     const { selectedMenu, visitDate, expectedTotalBenefitsAmount } = test;
 
@@ -120,7 +120,7 @@ describe('EventProcessor 클래스 테스트', () => {
       selectedMenu: testSelectedMenu2,
       expectedTotalAmountAfterDiscount: 8_500,
     },
-  ])('할인 후 예상 결제 금액 계산', (test) => {
+  ])('할인 후 예상 결제 금액 계산.', (test) => {
     // Arrange
     const { selectedMenu, visitDate, expectedTotalAmountAfterDiscount } = test;
 
@@ -130,5 +130,28 @@ describe('EventProcessor 클래스 테스트', () => {
 
     // Assert
     expect(totalAmountAfterDiscount).toBe(expectedTotalAmountAfterDiscount);
+  });
+
+  test.each([
+    {
+      visitDate: 3,
+      selectedMenu: testSelectedMenu1,
+      expectedEventBadge: BENEFIT_CONSTANT.eventBadge.santa.item,
+    },
+    {
+      visitDate: 26,
+      selectedMenu: testSelectedMenu2,
+      expectedEventBadge: BENEFIT_CONSTANT.nothing,
+    },
+  ])('이벤트 뱃지를 조건에 맞게 반환.', (test) => {
+    // Arrange
+    const { visitDate, selectedMenu, expectedEventBadge } = test;
+
+    // Act
+    const processor = new EventProcessor(visitDate, selectedMenu);
+    const eventBadge = processor.getEventBadge();
+
+    // Assert
+    expect(eventBadge).toBe(expectedEventBadge);
   });
 });

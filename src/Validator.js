@@ -1,14 +1,13 @@
-import { ErrorMessages } from './constants/messages.js';
+import validateVisitDateFn from './validations/validateVisitDateFn.js';
+import validateSelectedMenusFn from './validations/validateselectedMenusFn.js';
 
 const Validator = {
   validateVisitDate(visitDate) {
-    if (!Number.isInteger(visitDate)) {
-      throw new Error(ErrorMessages.visitDate);
-    }
+    validateVisitDateFn(visitDate);
+  },
 
-    if (visitDate < 1 || visitDate > 31) {
-      throw new Error(ErrorMessages.visitDate);
-    }
+  validateSelectedMenus(selectedMenus) {
+    validateSelectedMenusFn(selectedMenus);
   },
 };
 

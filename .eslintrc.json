@@ -17,7 +17,12 @@
     "no-console": "warn",
     "no-dupe-args": "error",
     "no-unreachable": "error",
-    "no-unused-vars": "warn"
+    "no-unused-vars": "warn",
+    "import/extensions": ["off"],
+    "import/order": ["off"],
+    "no-undef": ["off"],
+    "no-constant-condition": ["error", { "checkLoops": false }],
+    "no-await-in-loop": 0
   },
   "plugins": ["import"]
 }

@@ -44,7 +44,6 @@ class EventProcessor {
     storeBenefits(benefits, visitDate, giftResult, selectedMenu);
 
     if (benefits.size === 0) return BENEFIT_CONSTANT.nothing;
-
     return benefits;
   }
 
@@ -71,11 +70,9 @@ class EventProcessor {
     if (totalBenefitsAmount === BENEFIT_CONSTANT.nothingAmount) {
       return totalAmountBeforeDiscount;
     }
-
     if (totalAmountBeforeDiscount >= BENEFIT_CONSTANT.gift.amountLimit) {
       return totalAmountAfterDiscount + BENEFIT_CONSTANT.gift.amount;
     }
-
     return totalAmountAfterDiscount;
   }
 
@@ -92,7 +89,6 @@ class EventProcessor {
     if (totalBenefitsAmount < BENEFIT_CONSTANT.eventBadge.santa.limit) {
       return BENEFIT_CONSTANT.eventBadge.tree.item;
     }
-
     return BENEFIT_CONSTANT.eventBadge.santa.item;
   }
 }

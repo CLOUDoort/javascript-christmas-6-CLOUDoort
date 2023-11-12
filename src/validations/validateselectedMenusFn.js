@@ -48,18 +48,11 @@ const checkMenuMax = (selectedMenus) => {
 const validateSelectedMenusFn = (menus) => {
   const selectedMenus = menus.split(',').map((menu) => menu.trim().split('-'));
   const menuArr = selectedMenus.map(([menu, _]) => menu);
-
-  // 형식을 지키지 않은 값
   checkType(selectedMenus);
-  // 메뉴 개수 1 미만 숫자
   checkMenuMin(selectedMenus);
-  // 중복 메뉴 입력
   checkDuplicate(menuArr);
-  // 없는 메뉴 불가
   checkExist(menuArr);
-  // 음료만 주문시 불가
   checkOnlyBeverage(menuArr);
-  // 메뉴 최대 20개
   checkMenuMax(selectedMenus);
 };
 

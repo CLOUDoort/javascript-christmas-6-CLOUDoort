@@ -3,7 +3,7 @@ import EventProcessor from '../src/domains/EventProcessor';
 
 const testSelectedMenu1 = new Map([
   ['티본스테이크', 1],
-  ['비비큐립', 1],
+  ['바비큐립', 1],
   ['초코케이크', 2],
   ['제로콜라', 1],
 ]);

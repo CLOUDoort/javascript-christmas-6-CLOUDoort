@@ -34,7 +34,10 @@ const BENEFIT_CONSTANT = Object.freeze({
     }),
   }),
   nothing: '없음',
-  nothingAmount: '0원',
+  nothingAmount: 0,
+  limit: 10_000,
+  startDate: 1,
+  endDate: 31,
 });
 
 export default BENEFIT_CONSTANT;

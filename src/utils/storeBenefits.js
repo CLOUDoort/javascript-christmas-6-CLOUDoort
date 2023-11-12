@@ -1,7 +1,7 @@
-import { SPECIAL_DATE, WEEK_DAY, WEEK_END } from '../constants/date';
+import { SPECIAL_DATE, WEEK_DAY, WEEK_END } from '../constants/date.js';
 
-import BENEFIT_CONSTANT from '../constants/benefit';
-import { MENU_CATEGORY } from '../constants/menu';
+import BENEFIT_CONSTANT from '../constants/benefit.js';
+import { MENU_CATEGORY } from '../constants/menu.js';
 
 const checkWeekEnd = (benefits, visitDate, selectedMenu) => {
   if (WEEK_END.includes(visitDate)) {

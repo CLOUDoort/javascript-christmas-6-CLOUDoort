@@ -1,6 +1,6 @@
-import BENEFIT_CONSTANT from '../constants/benefit';
-import { MENU_PRICE } from '../constants/menu';
-import storeBenefits from '../utils/storeBenefits';
+import BENEFIT_CONSTANT from '../constants/benefit.js';
+import { MENU_PRICE } from '../constants/menu.js';
+import storeBenefits from '../utils/storeBenefits.js';
 
 class EventProcessor {
   #visitDate;
@@ -32,6 +32,11 @@ class EventProcessor {
   }
 
   getBenefitsResult() {
+    const totalAmountBeforeDiscount = this.getTotalAmountBeforeDiscount();
+    if (totalAmountBeforeDiscount < BENEFIT_CONSTANT.limit) {
+      return BENEFIT_CONSTANT.nothing;
+    }
+
     const visitDate = this.#visitDate;
     const selectedMenu = this.#selectedMenus;
     const benefits = new Map([]);

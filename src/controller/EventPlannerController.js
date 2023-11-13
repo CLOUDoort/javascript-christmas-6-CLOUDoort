@@ -16,11 +16,16 @@ class EventPlannerController {
 
   async plan() {
     this.#outputView.printGreeting();
+
     const visitDate = await this.#getVisitDate();
     const selectedMenus = await this.#getSelectedMenus();
+
     this.#outputView.printPreview(visitDate);
+
     const eventProcessor = new EventProcessor(visitDate, selectedMenus);
-    this.#printEventContent(selectedMenus, eventProcessor);
+
+    this.#outputView.printMenu(selectedMenus);
+    this.#printEventContent(eventProcessor);
   }
 
   async #getVisitDate() {
@@ -45,8 +50,7 @@ class EventPlannerController {
     return handleException(getValidSelectedMenus);
   }
 
-  async #printEventContent(selectedMenus, eventProcessor) {
-    this.#outputView.printMenu(selectedMenus);
+  async #printEventContent(eventProcessor) {
     this.#outputView.printTotalAmountBeforeDiscount(
       eventProcessor.getTotalAmountBeforeDiscount(),
     );

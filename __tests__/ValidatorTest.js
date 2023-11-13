@@ -52,7 +52,13 @@ describe('Validator 클래스 테스트.', () => {
 
   test.each([
     {
-      selectedMenus: '해산물파스타-2-3레드와인-1-2',
+      selectedMenus: '해산물파스타-2레드와인-2',
+    },
+    {
+      selectedMenus: '해산물파스타-a2',
+    },
+    {
+      selectedMenus: '2-해산물파스타',
     },
     {
       selectedMenus: '타파스-0,제로콜라-1',

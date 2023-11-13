@@ -3,7 +3,10 @@ import { MENU_PRICE, MENU_CATEGORY, MENU_VALIDATE } from '../constants/menu.js';
 
 const checkType = (selectedMenus) => {
   selectedMenus.forEach((menu) => {
-    if (menu.length !== MENU_VALIDATE.menuTypeLength)
+    if (
+      menu.length !== MENU_VALIDATE.menuTypeLength ||
+      !Number.isInteger(Number(menu[1]))
+    )
       throw new Error(ErrorMessages.menu);
   });
 };

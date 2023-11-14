@@ -2,8 +2,8 @@ import { Console } from '@woowacourse/mission-utils';
 import { OutputMessages } from './constants/messages.js';
 import BENEFIT_CONSTANT from './constants/benefit.js';
 import currencyFormat from './utils/currencyFormat.js';
+import { EOL as LINE_SEPARATOR } from 'os';
 
-const LINE_SEPARATOR = ' \n ';
 const currency = '원';
 
 const OutputView = {
@@ -39,11 +39,9 @@ const OutputView = {
 
   printBenefits(benefits) {
     if (benefits === BENEFIT_CONSTANT.nothing) {
-      return Console.print(
-        `${
-          OutputMessages.benefits + LINE_SEPARATOR + benefits + LINE_SEPARATOR
-        }`,
-      );
+      Console.print(`${OutputMessages.benefits} ${LINE_SEPARATOR} ${benefits}`);
+      Console.print(' ');
+      return true;
     }
     Console.print(`${OutputMessages.benefits}`);
     Array.from(benefits).forEach(([benefit, amount]) => {

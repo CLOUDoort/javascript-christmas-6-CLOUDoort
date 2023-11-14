@@ -9,12 +9,12 @@ const OutputMessages = Object.freeze({
   preview: (date) =>
     `12월 ${date}일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n`,
   menu: '<주문 메뉴>',
-  totalAmountBeforeDiscount: '\n<할인 전 총주문 금액>\n',
-  gift: '<증정 메뉴>\n',
+  totalAmountBeforeDiscount: '<할인 전 총주문 금액>',
+  gift: '<증정 메뉴>',
   benefits: '<혜택 내역>',
-  benefitsAmount: '<총혜택 금액>\n',
-  totalAmountAfterDiscount: '<할인 후 예상 결제 금액>\n',
-  eventBadge: '<12월 이벤트 배지>\n',
+  benefitsAmount: '<총혜택 금액>',
+  totalAmountAfterDiscount: '<할인 후 예상 결제 금액>',
+  eventBadge: '<12월 이벤트 배지>',
 });
 
 const ERROR_PREFIX = '[ERROR]';

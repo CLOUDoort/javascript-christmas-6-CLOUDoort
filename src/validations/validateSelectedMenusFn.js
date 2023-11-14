@@ -1,5 +1,6 @@
+import { MENU_CATEGORY, MENU_PRICE, MENU_VALIDATE } from '../constants/menu.js';
+
 import { ErrorMessages } from '../constants/messages.js';
-import { MENU_PRICE, MENU_CATEGORY, MENU_VALIDATE } from '../constants/menu.js';
 
 const checkType = (selectedMenus) => {
   selectedMenus.forEach((menu) => {

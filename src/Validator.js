@@ -1,5 +1,5 @@
+import validateSelectedMenusFn from './validations/validateSelectedMenusFn.js';
 import validateVisitDateFn from './validations/validateVisitDateFn.js';
-import validateSelectedMenusFn from './validations/validateselectedMenusFn.js';
 
 const Validator = {
   validateVisitDate(visitDate) {

@@ -27,9 +27,8 @@ const checkDuplicate = (menuArr) => {
 };
 
 const checkExist = (menuArr) => {
-  const existFlag = menuArr.every((menu) =>
-    Object.prototype.hasOwnProperty.call(MENU_PRICE, menu),
-  );
+  const existFlag = menuArr.every((menu) => menu in MENU_PRICE);
+
   if (!existFlag) throw new Error(ErrorMessages.menu);
 };
 

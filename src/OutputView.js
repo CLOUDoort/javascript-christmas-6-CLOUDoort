@@ -1,8 +1,8 @@
-import { Console } from '@woowacourse/mission-utils';
-import { OutputMessages } from './constants/messages.js';
 import BENEFIT_CONSTANT from './constants/benefit.js';
-import currencyFormat from './utils/currencyFormat.js';
+import { Console } from '@woowacourse/mission-utils';
 import { EOL as LINE_SEPARATOR } from 'os';
+import { OutputMessages } from './constants/messages.js';
+import currencyFormat from './utils/currencyFormat.js';
 
 const currency = '원';
 

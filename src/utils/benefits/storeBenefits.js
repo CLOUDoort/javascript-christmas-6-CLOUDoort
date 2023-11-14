@@ -7,7 +7,7 @@ const checkWeekEnd = (benefits, visitDate, selectedMenu) => {
   if (WEEK_END.includes(visitDate)) {
     const discountNumber = Array.from(selectedMenu)
       .filter(([menu, _]) => MENU_CATEGORY.main.includes(menu))
-      .reduce((acc, [_, count]) => acc + count, 0);
+      .reduce((acc, [_, count]) => acc + Number(count), 0);
 
     if (discountNumber === 0) return;
 
@@ -22,7 +22,7 @@ const checkWeekDay = (benefits, visitDate, selectedMenu) => {
   if (WEEK_DAY.includes(visitDate)) {
     const discountNumber = Array.from(selectedMenu)
       .filter(([menu, _]) => MENU_CATEGORY.dessert.includes(menu))
-      .reduce((acc, [_, count]) => acc + count, 0);
+      .reduce((acc, [_, count]) => acc + Number(count), 0);
 
     if (discountNumber === 0) return;
 

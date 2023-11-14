@@ -6,7 +6,7 @@ const checkTotalBenefitsAmount = (totalBenefits) => {
   }
 
   return Array.from(totalBenefits).reduce(
-    (acc, [_, amount]) => acc + amount,
+    (acc, [_, amount]) => acc + Number(amount),
     0,
   );
 };

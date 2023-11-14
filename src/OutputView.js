@@ -25,9 +25,7 @@ const OutputView = {
   printTotalAmountBeforeDiscount(totalAmountBeforeDiscount) {
     Console.print(
       `${
-        LINE_SEPARATOR +
         OutputMessages.totalAmountBeforeDiscount +
-        LINE_SEPARATOR +
         currencyFormat(totalAmountBeforeDiscount) +
         currency +
         LINE_SEPARATOR
@@ -36,20 +34,18 @@ const OutputView = {
   },
 
   printGift(gift) {
-    Console.print(
-      `${OutputMessages.gift + LINE_SEPARATOR + gift + LINE_SEPARATOR}`,
-    );
+    Console.print(`${OutputMessages.gift + gift + LINE_SEPARATOR}`);
   },
 
   printBenefits(benefits) {
     if (benefits === BENEFIT_CONSTANT.nothing) {
-      Console.print(`${OutputMessages.benefits} ${LINE_SEPARATOR} ${benefits}`);
+      Console.print(`${OutputMessages.benefits} ${LINE_SEPARATOR}${benefits}`);
       Console.print(' ');
       return true;
     }
-    Console.print(`${OutputMessages.benefits} `);
+    Console.print(`${OutputMessages.benefits}`);
     Array.from(benefits).forEach(([benefit, amount]) => {
-      Console.print(` ${benefit}: -${currencyFormat(amount) + currency}`);
+      Console.print(`${benefit}: -${currencyFormat(amount) + currency}`);
     });
     Console.print(' ');
     return true;
@@ -59,13 +55,7 @@ const OutputView = {
     let amount = benefitsAmount;
     amount &&= `-${currencyFormat(benefitsAmount)}`;
     Console.print(
-      `${
-        OutputMessages.benefitsAmount +
-        LINE_SEPARATOR +
-        amount +
-        currency +
-        LINE_SEPARATOR
-      }`,
+      `${OutputMessages.benefitsAmount + amount + currency + LINE_SEPARATOR}`,
     );
   },
 
@@ -73,7 +63,6 @@ const OutputView = {
     Console.print(
       `${
         OutputMessages.totalAmountAfterDiscount +
-        LINE_SEPARATOR +
         currencyFormat(totalAmountAfterDiscount) +
         currency +
         LINE_SEPARATOR
@@ -82,7 +71,7 @@ const OutputView = {
   },
 
   printEventBadge(eventBadge) {
-    Console.print(`${OutputMessages.eventBadge + LINE_SEPARATOR + eventBadge}`);
+    Console.print(`${OutputMessages.eventBadge + eventBadge}`);
   },
 
   printError(message) {

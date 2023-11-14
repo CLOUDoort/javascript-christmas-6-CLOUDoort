@@ -1,4 +1,4 @@
-import App from '../src/App.js';
+import App from '../src/App';
 import { EOL as LINE_SEPARATOR } from 'os';
 import { MissionUtils } from '@woowacourse/mission-utils';
 

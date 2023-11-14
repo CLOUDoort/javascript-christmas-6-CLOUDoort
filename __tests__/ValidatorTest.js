@@ -1,5 +1,5 @@
 import { ErrorMessages } from '../src/constants/messages';
-import Validator from '../src/Validator.js';
+import Validator from '../src/Validator';
 
 describe('Validator 클래스 테스트.', () => {
   test.each([

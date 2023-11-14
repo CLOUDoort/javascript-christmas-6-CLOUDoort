@@ -39,7 +39,7 @@ const OutputView = {
 
   printBenefits(benefits) {
     if (benefits === BENEFIT_CONSTANT.nothing) {
-      Console.print(`${OutputMessages.benefits} ${LINE_SEPARATOR} ${benefits}`);
+      Console.print(`${OutputMessages.benefits + LINE_SEPARATOR + benefits}`);
       Console.print(' ');
       return true;
     }

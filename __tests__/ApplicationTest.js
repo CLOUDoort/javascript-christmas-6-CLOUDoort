@@ -1,4 +1,4 @@
-import App from '../src/App';
+import App from '../src/App.js';
 import { EOL as LINE_SEPARATOR } from 'os';
 import { MissionUtils } from '@woowacourse/mission-utils';
 
@@ -19,7 +19,9 @@ const getLogSpy = () => {
   return logSpy;
 };
 
-const getOutput = (logSpy) => [...logSpy.mock.calls].join(LINE_SEPARATOR);
+const getOutput = (logSpy) => {
+  return [...logSpy.mock.calls].join(LINE_SEPARATOR);
+};
 
 const expectLogContains = (received, expectedLogs) => {
   expectedLogs.forEach((log) => {
@@ -61,7 +63,7 @@ describe('기능 테스트', () => {
     await app.run();
 
     // then
-    const expected = [`<혜택 내역> ${LINE_SEPARATOR} 없음`];
+    const expected = ['<혜택 내역>' + LINE_SEPARATOR + '없음'];
 
     expectLogContains(getOutput(logSpy), expected);
   });

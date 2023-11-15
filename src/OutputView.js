@@ -43,6 +43,7 @@ const OutputView = {
       Console.print(' ');
       return true;
     }
+
     Console.print(`${OutputMessages.benefits}`);
     Array.from(benefits).forEach(([benefit, amount]) => {
       Console.print(`${benefit}: -${currencyFormat(amount) + currency}`);

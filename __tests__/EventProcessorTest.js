@@ -11,6 +11,12 @@ const testSelectedMenu2 = new Map([
   ['타파스', 1],
   ['제로콜라', 1],
 ]);
+const testSelectedMenu3 = new Map([['크리스마스파스타', 1]]);
+const testSelectedMenu4 = new Map([
+  ['크리스마스파스타', 4],
+  ['제로콜라', 1],
+  ['초코케이크', 1],
+]);
 
 describe('EventProcessor 클래스 테스트.', () => {
   test.each([
@@ -23,6 +29,11 @@ describe('EventProcessor 클래스 테스트.', () => {
       visitDate: 26,
       selectedMenu: testSelectedMenu2,
       expectedTotalAmountBeforeDiscount: 8_500,
+    },
+    {
+      visitDate: 27,
+      selectedMenu: testSelectedMenu3,
+      expectedTotalAmountBeforeDiscount: 25_000,
     },
   ])('할인 전 총주문 금액 계산', (test) => {
     // Arrange
@@ -74,6 +85,11 @@ describe('EventProcessor 클래스 테스트.', () => {
       visitDate: 26,
       expectedBenefitsResult: BENEFIT_CONSTANT.nothing,
     },
+    {
+      selectedMenu: testSelectedMenu3,
+      visitDate: 27,
+      expectedBenefitsResult: BENEFIT_CONSTANT.nothing,
+    },
   ])('혜택 내역 저장.', (test) => {
     // Arrange
     const { selectedMenu, visitDate, expectedBenefitsResult } = test;
@@ -95,6 +111,11 @@ describe('EventProcessor 클래스 테스트.', () => {
     {
       selectedMenu: testSelectedMenu2,
       visitDate: 26,
+      expectedTotalBenefitsAmount: BENEFIT_CONSTANT.nothingAmount,
+    },
+    {
+      selectedMenu: testSelectedMenu3,
+      visitDate: 27,
       expectedTotalBenefitsAmount: BENEFIT_CONSTANT.nothingAmount,
     },
   ])('총혜택 금액 계산.', (test) => {
@@ -142,6 +163,11 @@ describe('EventProcessor 클래스 테스트.', () => {
       visitDate: 26,
       selectedMenu: testSelectedMenu2,
       expectedEventBadge: BENEFIT_CONSTANT.nothing,
+    },
+    {
+      visitDate: 15,
+      selectedMenu: testSelectedMenu4,
+      expectedEventBadge: BENEFIT_CONSTANT.eventBadge.tree.item,
     },
   ])('이벤트 뱃지를 조건에 맞게 반환.', (test) => {
     // Arrange
